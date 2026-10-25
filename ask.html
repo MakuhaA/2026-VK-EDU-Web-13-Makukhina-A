@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Арканум</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="public/static/css/style.css">
+    <link rel="icon" href="sourse/Снимок экрана 2026-10-11 004035-no-bg-preview (carve.photos).png" type="image/png">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="index.html" class="header-logo">
+        <div class="logotype">
+            <img src="public/static/img/icon.png" alt="лого"
+                 class="logo_image">
+        </div>
+
+        <span class="zag">Арканум</span>
+    </a>
+
+    <div class="header-research">
+        <input type="search" placeholder="поиск">
+        <button class="search_button" type="button"><span>Поиск</span></button>
+    </div>
+
+    <div class="user">
+        <div class="avatar">
+            <img src="public/static/img/аватар.png" alt="Аватар" class="avatar_image">
+        </div>
+        <div class="user_action">
+            <span class="name">Имя Фамилия</span>
+            <div>
+                 <a href="profile.html"><button class="user_button" type="button"><span>Настойки</span></button></a>
+                <a href=""><button class="user_button" type="button"><span>Выход</span></button></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="main-wrapper">
+    <main class="main-content">
+        <div class="ask_page">
+            <h1 class="situation">Опишите вашу ситуацию</h1>
+            <div class="form-field">
+                <label for="sizesInputDefault1" class="form-label">Заголовок</label>
+                <input class="form-control" type="text" id="sizesInputDefault1" placeholder=""
+                       aria-label="Default input example">
+            </div>
+
+            <div class="form-field">
+                <label for="exampleFormControlTextarea2" class="form-label">Текст</label>
+                <textarea class="form-control" id="exampleFormControlTextarea2" rows="5"
+                          style="color: black;"></textarea>
+            </div>
+
+            <div class="form-field">
+                <label for="sizesInputDefault2" class="form-label">Теги</label>
+                <input class="form-control" type="text" id="sizesInputDefault2" placeholder=""
+                       aria-label="Default input example">
+            </div>
+
+            <div class="form-field">
+                <label for="formFile" class="form-label">Добавить картинку</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
+
+            <div class="ask">
+                <button id="ask_button">Отправить</button>
+            </div>
+        </div>
+
+
+    </main>
+
+    <aside class="sidebar">
+        <div class="sidebar_block">
+            <h2 class="sidebar-title">Популярные тэги</h2>
+            <ul class="sidebar-menu">
+                <li><a href="#">#любовь</a></li>
+                <li><a href="#">#расклад</a></li>
+                <li><a href="#">#помощь</a></li>
+                <li><a href="#">#приворот</a></li>
+            </ul>
+        </div>
+        <div class="sidebar_block">
+            <h2 class="sidebar-title">Лучшие знатоки</h2>
+            <ul class="top-users">
+                <li><a href="#">Галина</a></li>
+                <li><a href="#">Ванга№2</a></li>
+                <li><a href="#">Уэйт</a></li>
+                <li><a href="#">Ленорман</a></li>
+            </ul>
+        </div>
+    </aside>
+</div>
+<script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
+        crossorigin="anonymous"></script>
+<script src="public/static/js/script.js"></script>
+</body>
+</html>
