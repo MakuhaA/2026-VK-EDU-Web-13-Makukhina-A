@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="questions">
+    {% include 'partials/ques.html' with question=question %}
+</div>
+
+<h2 id="answers" class="answers-title">Ответы</h2>
+
+<div class="answer">
+    {% for answer in answers %}
+        {% include 'partials/ans.html' with answer=answer %}
+    {% empty %}
+        <p>Пока нет ответов. Будь первым!</p>
+    {% endfor %}
+</div>
+
+<div class="ans_page" style="margin-top: 30px;">
+    <div class="form-field answer-form">
+        <label for="exampleFormControlTextarea2" class="form-label">Дать ответ: </label>
+        <textarea class="form-control answer-textarea" id="exampleFormControlTextarea2" rows="5" style="margin-top: 15px;"></textarea>
+    </div>
+    <div>
+        <button id="answer_btn" class="btn-send-answer" style="margin-top: 20px;">Отправить</button>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Арканум</title>
+    {% block extra_head %}
+    {% endblock %}
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'img/icon.png' %}">
+</head>
+
+<body>
+
+<header class="site-header">
+    <a href="{% url 'index' %}" class="header-logo">
+        <div class="logotype">
+            <img src="{% static 'img/icon.png' %}" alt="лого" class="logo_image">
+        </div>
+
+        <span class="zag">Арканум</span>
+    </a>
+
+    <div class="header-research">
+        <input type="search" placeholder="поиск">
+        <button class="search_button" type="button"><span>Поиск</span></button>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="user">
+        <div class="avatar">
+            <img src="{% static 'img/аватар.png' %}" alt="Аватар" class="avatar_image">
+        </div>
+        <div class="user_action">
+
+            <span class="name">Имя Фамилия</span>
+            <div>
+                <a href="{% url 'profile' %}">
+                    <button class="user_button" type="button"><span>Настойки</span></button>
+                </a>
+                <a href="">
+                    <button class="user_button" type="button"><span>Выход</span></button>
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <div class="user_action" style="margin-top: 45px">
+            <div>
+                <a href="{% url 'register' %}">
+                    <button class="user_button" type="button"><span>Регистрация</span></button>
+                </a>
+                <a href="{% url 'login' %}">
+                    <button class="user_button" type="button"><span>Вход</span></button>
+                </a>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+</header>
+
+<div class="main-wrapper">
+    <main class="main-content">
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    <aside class="sidebar">
+        <div class="sidebar_block">
+            <h2 class="sidebar-title">Популярные тэги</h2>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'tag_questions' tag_name='любовь' %}">#любовь</a></li>
+                <li><a href="{% url 'tag_questions' tag_name='расклад' %}">#расклад</a></li>
+                <li><a href="{% url 'tag_questions' tag_name='помощь' %}">#помощь</a></li>
+                <li><a href="{% url 'tag_questions' tag_name='приворот' %}">#приворот</a></li>
+            </ul>
+        </div>
+        <div class="sidebar_block">
+            <h2 class="sidebar-title">Лучшие знатоки</h2>
+            <ul class="top-users">
+                <li><a href="#">Галина</a></li>
+                <li><a href="#">Ванга№2</a></li>
+                <li><a href="#">Уэйт</a></li>
+                <li><a href="#">Ленорман</a></li>
+            </ul>
+        </div>
+    </aside>
+
+</div>
+
+<script src="{% static 'js/script.js' %}></script>
+</body>
+</html>
