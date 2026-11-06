@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="welcome_block">
+    <a href="{% url 'index' %}"  style="margin-top: 40px;">Добро пожаловать</a>
+    <h1  style="margin-left: -540px;">Популярные вопросы</h1>
+    <div class="ask_question">
+        <a href="{% url 'ask' %}">
+            Задать вопрос
+        </a>
+    </div>
+</div>
+<p class="opis">Пусть это пространство станет для вас безопасной гаванью, где можно задать любой, даже самый «глупый» на первый взгляд вопрос, поделиться сокровенным раскладом и получить мудрый совет. </p>
+
+<div class="questions">
+
+    {% for question in questions %}
+        {% include 'partials/ques.html' with question=question %}
+    {% endfor %}
+
+</div>
+{% include 'partials/pagination.html' %}
+{% endblock %}

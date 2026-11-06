@@ -1,0 +1,32 @@
+{% load static %}
+
+<div class="question-card">
+    <img src="{% static 'img/маг.jpg' %}" alt="Вопрос" class="question-image">
+    <div class="question-content">
+        <h3>{{ question.title }}</h3>
+        <p>{{ question.text }}</p>
+        <div class="answer_button">
+            <a  href="{% url 'answer' question_id=question.id %}"><span>Ответы</span></a>
+        </div>
+        <div class="post_footer">
+            <div class="tags">
+                <p>Тэги:</p>
+                <a href="{% url 'tag_questions' tag_name='любовь' %}" class="tag">#любовь</a>
+                <a href="{% url 'tag_questions' tag_name='мужчина' %}" class="tag">#мужчина</a>
+                <a href="{% url 'tag_questions' tag_name='расклад' %}" class="tag">#расклад</a>
+            </div>
+
+            <div class="reactions" data-id="q1">
+                <button type="button" class="reaction reaction--like">
+                    <img src="{% static 'img/thumbs-up.png' %}" alt="Лайк" class="reaction__icon">
+                    <span class="reaction__count">12</span>
+                </button>
+                <button type="button" class="reaction reaction--dislike">
+                    <img src="{% static 'img/thumbs-down.png' %}" alt="Лайк" class="reaction__icon">
+                    <span class="reaction__count">3</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
