@@ -28,6 +28,5 @@ dist/
 .pytest_cache/
 
 
-.env
 .env.local
 .env.docker
