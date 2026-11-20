@@ -1,0 +1,42 @@
+{% load static %}
+
+<div class="question-card">
+    {% if question.image %}
+    <img src="{{ question.image.image.url }}" alt="Вопрос" class="question-image">
+    {% else %}
+    <img src="{% static 'img/маг.jpg' %}" alt="Вопрос" class="question-image">
+    {% endif %}
+    <div class="question-content">
+        <h3>{{ question.title }}</h3>
+        <p>{{ question.content }}</p>
+        <div class="answer_button">
+            <a href="{% url 'answer' question_id=question.id %}"><span>Ответы</span></a>
+        </div>
+        <div class="post_footer">
+            <div class="tags">
+                <p>Тэги:</p>
+                {% for tag in question.tags.all %}
+                <a href="{% url 'tag_questions' tag_name=tag.name %}" class="tag">#{{ tag.name }}</a>
+                {% empty %}
+                <span class="tag">Нет тегов</span>
+                {% endfor %}
+            </div>
+
+            <div class="reactions" data-id="q{{ question.id }}">
+                {% if user.is_authenticated %}
+                <button type="button" class="reaction reaction--like ajax-like-question-btn
+            {% if question.id in liked_questions_ids %}liked{% endif %}"
+                        data-question-id="{{ question.id }}" title="Поставить лайк">
+                    <img src="{% static 'img/thumbs-up.png' %}" alt="Лайк" class="reaction__icon">
+                    <span class="reaction__count">{{ question.num_likes }}</span>
+                </button>
+                {% else %}
+                <button type="button" class="reaction reaction--like" disabled title="Войдите, чтобы поставить лайк">
+                    <img src="{% static 'img/thumbs-up.png' %}" alt="Лайк" class="reaction__icon">
+                    <span class="reaction__count">{{ question.num_likes }}</span>
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

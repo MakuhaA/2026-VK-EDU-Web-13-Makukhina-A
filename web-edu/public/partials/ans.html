@@ -1,0 +1,46 @@
+{% load static %}
+
+<div class="card mb-3 answer-card">
+    <div class="card-body">
+        <div class="body-answer">
+            <img src="{% static 'img/аватар.png' %}" alt="аватар" class="avatar_image">
+            <strong style="color: white;">{{ answer.author.username }}</strong>
+            <p class="card-text answer-text">{{ answer.content }}</p>
+        </div>
+
+        <div class="card-footer answer-footer">
+            <p class="card-text"><small class="fg-2 answer-date">{{ answer.created_at }}</small></p>
+
+            <div class="form-field check-field">
+                {% if user == question.author %}
+                <input type="checkbox" class="correct-answer-checkbox"
+                       data-question-id="{{ question.id }}"
+                       data-answer-id="{{ answer.id }}"
+                       {% if answer.is_correct %}checked{% endif %}>
+                <label>Правильный ответ</label>
+                {% else %}
+                {% if answer.is_correct %}
+                <span style="color: #00ff00; font-weight: bold;">✔ Правильный ответ</span>
+                {% endif %}
+                {% endif %}
+            </div>
+
+            <div class="reactions" data-id="a{{ answer.id }}">
+                {% if user.is_authenticated %}
+
+                <button type="button" class="reaction reaction--like ajax-like-answer-btn
+                        {% if answer.id in liked_answers_ids %}liked{% endif %}"
+                        data-answer-id="{{ answer.id }}" title="Поставить лайк">
+                    <img src="{% static 'img/thumbs-up.png' %}" alt="Лайк" class="reaction__icon">
+                    <span class="reaction__count">{{ answer.answer_likes.count }}</span>
+                </button>
+                {% else %}
+                <button type="button" class="reaction reaction--like" disabled title="Войдите, чтобы поставить лайк">
+                    <img src="{% static 'img/thumbs-up.png' %}" alt="Лайк" class="reaction__icon">
+                    <span class="reaction__count">{{ answer.answer_likes.count }}</span>
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

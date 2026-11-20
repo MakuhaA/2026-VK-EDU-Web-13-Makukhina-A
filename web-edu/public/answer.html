@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div style="margin-top: 30px;">
+    <div class="questions">
+        {% include 'partials/ques.html' with question=question %}
+    </div>
+</div>
+
+<h2 id="answers" class="answers-title">Ответы</h2>
+
+<div class="answer">
+    {% for answer in answers %}
+        {% include 'partials/ans.html' with answer=answer %}
+    {% empty %}
+        <p>Пока нет ответов. Будь первым!</p>
+    {% endfor %}
+</div>
+
+<div class="ans_page" style="margin-top: 30px;">
+    {% if user.is_authenticated %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-field answer-form">
+            <label for="{{ form.content.id_for_label }}" class="form-label">Дать ответ: </label>
+             <textarea name="content" id="id_content" rows="4"
+                      class="form-control"
+                      style="width: 100%; border: 1px solid #ccc; border-radius: 8px; padding: 10px; font-size: 16px; outline: none; background-color: #f8f9fa;"
+                      placeholder="Напишите ваш ответ здесь..."></textarea>
+            {% if form.content.errors %}
+                <div class="text-danger mt-2">{{ form.content.errors.as_text }}</div>
+            {% endif %}
+        </div>
+        <div>
+            <button type="submit" id="answer_btn" class="btn-send-answer" style="margin-top: 20px;">Отправить</button>
+        </div>
+    </form>
+    {% else %}
+        <p style="margin-top: 20px;">
+            <a href="{% url 'login' %}?next={{ request.path }}">Войдите</a>, чтобы оставить ответ.
+        </p>
+    {% endif %}
+</div>
+
+{% endblock %}

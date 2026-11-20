@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Вопросы по тегу <span style="color: #6a4c93;">#{{ tag }}</span></h1>
+
+    <div class="questions" style="margin-top: 20px;">
+        {% for question in page_obj.object_list %}
+            {% include 'partials/ques.html' with question=question %}
+        {% empty %}
+            <p>По этому тегу пока нет вопросов. Будь первой, кто его задаст!</p>
+        {% endfor %}
+
+    </div>
+
+    <a href="{% url 'index' %}" style="display: inline-block; margin-top: 20px;">&larr; Назад на главную</a>
+</div>
+{% endblock %}
