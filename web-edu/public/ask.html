@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="{% url 'ask' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="ask_page">
+        <h1 class="situation">Опишите вашу ситуацию</h1>
+
+        <div class="form-field">
+            <label for="{{ form.title.id_for_label }}" class="form-label">Заголовок</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+                <div class="text-danger mt-1">{{ form.title.errors.as_text }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.content.id_for_label }}" class="form-label">Текст</label>
+            {{ form.content }}
+            {% if form.content.errors %}
+                <div class="text-danger mt-1">{{ form.content.errors.as_text }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.tags.id_for_label }}" class="form-label">{{ form.tags.label }}</label>
+            {{ form.tags }}
+            {% if form.tags.errors %}
+            <div class="text-danger mt-1">{{ form.tags.errors.as_text }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-field">
+            <label for="formFile" class="form-label">Добавить картинку</label>
+            <input class="form-control" type="file" id="formFile" name="image">
+        </div>
+
+        <div class="ask">
+            <button type="submit" id="ask_button">Отправить</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
